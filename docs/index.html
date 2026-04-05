@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I 17 Consigli Definitivi per Startup</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        stone: {
+                            50: '#fafaf9',
+                            100: '#f5f5f4',
+                            200: '#e7e5e4',
+                            800: '#292524',
+                            900: '#1c1917',
+                        },
+                        brand: {
+                            accent: '#d97706', // amber-600
+                            light: '#fef3c7', // amber-100
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar for an elegant look */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f5f5f4; }
+        ::-webkit-scrollbar-thumb { background: #d6d3d1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #a8a29e; }
+
+        /* Mandatory Chart Container Styling */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container { height: 400px; }
+        }
+
+        /* Card animations */
+        .tip-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .tip-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border-color: #d97706;
+        }
+
+        /* Modal transition */
+        #modal-overlay { transition: opacity 0.3s ease-out; }
+        #modal-panel { transition: transform 0.3s ease-out; }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800 antialiased font-sans flex flex-col min-h-screen">
+
+    <!-- Chosen Palette: Warm Neutrals (Stone) with Amber accents for a "high-end editorial" feel -->
+    <!-- Application Structure Plan: A single-page dashboard. The header sets the stage. Section 1 uses an interactive chart to show HOW focus shifts across startup phases (giving context to the tips). Section 2 is the core: a filterable grid of the 17 tips. Clicking a tip opens a modal with deeper, actionable insights and attribution to the specific expert, allowing users to consume the "A4 page" conceptually but drill down for depth. -->
+    <!-- Visualization & Content Choices:
+         1. Radar Chart (Chart.js): Shows the changing balance of Prodotto, Crescita, Esecuzione over time. Interaction: Buttons change the data state. Justification: Illustrates that tips aren't static; their importance shifts. Method: Canvas via Chart.js.
+         2. Filterable Masonry-style Grid: Displays the 17 tips. Interaction: Category filters. Justification: Prevents cognitive overload, allows focusing on specific problem areas. Method: HTML/Tailwind + JS filtering.
+         3. Modal Detail View: Reveals the "Why" and "How". Interaction: Click on cards. Justification: Keeps the main view clean (like an A4) while providing the depth of a full report. Method: HTML/Tailwind + JS.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <!-- Header -->
+    <header class="w-full bg-white border-b border-stone-200 py-12 px-4 sm:px-6 lg:px-8 shadow-sm">
+        <div class="max-w-5xl mx-auto text-center">
+            <div class="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-brand-accent uppercase bg-brand-light rounded-full">
+                Simposio Virtuale
+            </div>
+            <h1 class="text-4xl md:text-5xl font-serif font-bold text-stone-900 mb-4 tracking-tight">I 17 Comandamenti delle Startup</h1>
+            <p class="text-lg md:text-xl text-stone-600 max-w-3xl mx-auto leading-relaxed">
+                Abbiamo messo in una stanza (virtuale) Andrew Chen, Paul Graham, Steve Blank e Brian Balfour. Ne abbiamo estratto, aggregato ed esploso la saggezza. Ecco le 17 leve che separano gli unicorni dal cimitero delle startup.
+            </p>
+        </div>
+    </header>
+
+    <main class="flex-grow w-full max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 space-y-16">
+
+        <!-- Section 1: Strategic Focus Analysis -->
+        <section aria-labelledby="focus-analysis" class="bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-stone-200">
+            <div class="text-center max-w-2xl mx-auto mb-8">
+                <h2 id="focus-analysis" class="text-2xl font-serif font-bold text-stone-900 mb-3">L'Evoluzione del Focus Operativo</h2>
+                <p class="text-stone-600">
+                    I 17 consigli sono divisi in 3 macro-aree: Prodotto, Crescita ed Esecuzione. Questa mappa interattiva mostra come la tua attenzione debba spostarsi dinamicamente attraverso le diverse fasi di vita della tua azienda.
+                </p>
+            </div>
+
+            <div class="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16">
+                <!-- Controls -->
+                <div class="flex flex-row flex-wrap lg:flex-col justify-center gap-3 w-full lg:w-1/4">
+                    <button onclick="updateChart('idea')" class="phase-btn active w-full text-left px-4 py-3 rounded-lg border-2 border-brand-accent bg-brand-light text-brand-accent font-semibold transition-colors" data-phase="idea">
+                        <span class="block text-sm text-stone-500 font-normal mb-1">Fase 1</span>
+                        Ideazione & Validazione
+                    </button>
+                    <button onclick="updateChart('mvp')" class="phase-btn w-full text-left px-4 py-3 rounded-lg border-2 border-stone-200 hover:border-stone-300 text-stone-600 transition-colors" data-phase="mvp">
+                        <span class="block text-sm text-stone-400 font-normal mb-1">Fase 2</span>
+                        Lancio MVP
+                    </button>
+                    <button onclick="updateChart('pmf')" class="phase-btn w-full text-left px-4 py-3 rounded-lg border-2 border-stone-200 hover:border-stone-300 text-stone-600 transition-colors" data-phase="pmf">
+                        <span class="block text-sm text-stone-400 font-normal mb-1">Fase 3</span>
+                        Product-Market Fit
+                    </button>
+                    <button onclick="updateChart('scale')" class="phase-btn w-full text-left px-4 py-3 rounded-lg border-2 border-stone-200 hover:border-stone-300 text-stone-600 transition-colors" data-phase="scale">
+                        <span class="block text-sm text-stone-400 font-normal mb-1">Fase 4</span>
+                        Scale-Up & Growth
+                    </button>
+                </div>
+
+                <!-- Data Viz -->
+                <div class="w-full lg:w-2/3">
+                    <div class="chart-container">
+                        <canvas id="focusChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: The 17 Tips Interactive Grid -->
+        <section aria-labelledby="tips-grid-title">
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <h2 id="tips-grid-title" class="text-3xl font-serif font-bold text-stone-900 mb-4">La Matrice Strategica in 17 Punti</h2>
+                <p class="text-stone-600">
+                    Esplora, filtra e approfondisci. Clicca su ciascun comandamento per scoprire il ragionamento strategico sottostante e chi ne è stato l'ispiratore principale.
+                </p>
+            </div>
+
+            <!-- Filters -->
+            <div class="flex flex-wrap justify-center gap-2 mb-10" id="filter-container">
+                <!-- Injected via JS -->
+            </div>
+
+            <!-- Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="tips-container">
+                <!-- Cards Injected via JS -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-stone-900 text-stone-400 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-5xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <div>
+                    <p class="text-sm mb-2">Generato dall'analisi delle metodologie di Paul Graham, Steve Blank, Andrew Chen e Brian Balfour.</p>
+                    <p class="text-sm text-stone-500">
+                        Autore: <span class="text-stone-300">Luca Sacchi Ricciardi</span>
+                    </p>
+                </div>
+                <div class="text-left md:text-right">
+                    <p class="text-sm font-semibold text-stone-300 mb-2">LucaSacchiNet</p>
+                    <p class="text-xs text-stone-500 mb-1">Office: Viale Bligny 13/a Milano</p>
+                    <p class="text-xs text-stone-500 mb-1">Cell: +39 3939242165</p>
+                    <p class="text-xs text-stone-500 mb-1">Email: info@lucasacchi.net</p>
+                    <p class="text-xs text-stone-500">P.IVA IT09731490968</p>
+                </div>
+            </div>
+            <div class="border-t border-stone-800 pt-6 text-center">
+                <p class="text-xs text-stone-500">
+                    Licenza: <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener noreferrer" class="text-brand-accent hover:text-brand-accent/80">CC BY-NC-SA 4.0</a> (Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International)
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal (Detail View) -->
+    <div id="modal" class="fixed inset-0 z-50 hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <!-- Overlay -->
+        <div id="modal-overlay" class="fixed inset-0 bg-stone-900/75 opacity-0 backdrop-blur-sm" aria-hidden="true"></div>
+
+        <div class="fixed inset-0 z-10 overflow-y-auto">
+            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                <!-- Panel -->
+                <div id="modal-panel" class="relative transform overflow-hidden rounded-xl bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-2xl scale-95 opacity-0">
+                    <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4 border-b border-stone-100">
+                        <div class="sm:flex sm:items-start">
+                            <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left w-full">
+                                <div class="flex items-center justify-between mb-4">
+                                    <span id="modal-category" class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-stone-100 text-stone-800">
+                                        <!-- Category -->
+                                    </span>
+                                    <button type="button" onclick="closeModal()" class="rounded-md bg-white text-stone-400 hover:text-stone-500 focus:outline-none">
+                                        <span class="sr-only">Chiudi</span>
+                                        <span class="text-2xl leading-none">&times;</span>
+                                    </button>
+                                </div>
+                                <h3 class="text-2xl font-serif font-bold leading-tight text-stone-900 mb-2" id="modal-title">
+                                    <!-- Title -->
+                                </h3>
+                                <p class="text-sm text-brand-accent font-semibold mb-6">Ispirato da: <span id="modal-expert"></span></p>
+
+                                <div class="mt-2 text-stone-600 space-y-4 text-base leading-relaxed" id="modal-content">
+                                    <!-- Content -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-stone-50 px-4 py-4 sm:flex sm:flex-row-reverse sm:px-6">
+                        <button type="button" onclick="closeModal()" class="mt-3 inline-flex w-full justify-center rounded-lg bg-white px-4 py-2 text-sm font-semibold text-stone-900 shadow-sm ring-1 ring-inset ring-stone-300 hover:bg-stone-50 sm:mt-0 sm:w-auto">
+                            Chiudi Scheda
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- DATA STORAGE ---
+        const tipsData = [
+            // Prodotto & Utenti
+            {
+                id: 1,
+                area: 'Prodotto',
+                icon: '🎯',
+                title: "Fai una cosa che la gente vuole davvero, non che tollera.",
+                expert: "Paul Graham",
+                content: "<p>Il mantra fondamentale di Y Combinator. Molte startup falliscono perché costruiscono soluzioni brillanti per problemi che a nessuno interessa risolvere. È meglio avere 100 utenti che amano il tuo prodotto, piuttosto che 1.000 che lo trovano 'ok'. L'amore genera passaparola, la tolleranza genera churn (abbandono).</p><strong>Azione pratica:</strong> Chiedi ai tuoi utenti: 'Come ti sentiresti se non potessi più usare questo prodotto?'. Se meno del 40% risponde 'molto deluso', non hai ancora creato qualcosa che la gente vuole davvero."
+            },
+            {
+                id: 2,
+                area: 'Prodotto',
+                icon: '🗣️',
+                title: "Parla con i tuoi utenti finché non fa male. Poi parlaci ancora.",
+                expert: "Steve Blank & Paul Graham",
+                content: "<p>Non puoi codificare il product-market fit restando chiuso in ufficio. Le risposte sono fuori. I dati ti dicono *cosa* sta succedendo, ma solo parlare con gli utenti ti dirà *perché*.</p><strong>Azione pratica:</strong> Pianifica almeno 5 interviste vocali/video a settimana con i tuoi utenti target (sia chi usa il prodotto, sia chi ha smesso di usarlo). Fai domande aperte, non cercare conferme ma cerca smentite alle tue tesi."
+            },
+            {
+                id: 3,
+                area: 'Prodotto',
+                icon: '🙈',
+                title: "Se non ti vergogni della tua prima versione, hai lanciato troppo tardi.",
+                expert: "Reid Hoffman / Echeggiato da YC",
+                content: "<p>Il perfezionismo è il più grande nemico del feedback. Costruire nell'ombra per mesi significa accumulare rischio. Il primo MVP deve solo testare l'assunzione di base più rischiosa.</p><strong>Azione pratica:</strong> Identifica l'unica funzionalità essenziale per risolvere il problema principale. Taglia tutto il resto. Lancia la prossima settimana usando no-code o strumenti pronti all'uso."
+            },
+            {
+                id: 4,
+                area: 'Prodotto',
+                icon: '🏢',
+                title: "Nessun business plan sopravvive al primo contatto con i clienti.",
+                expert: "Steve Blank",
+                content: "<p>Le proiezioni a 5 anni in Excel sono fantascienza. Le startup non eseguono un business plan (come le grandi aziende), le startup *cercano* un business model ripetibile e scalabile.</p><strong>Azione pratica:</strong> Sostituisci il business plan con un Lean Canvas. Aggiornalo costantemente basandoti sui feedback reali del mercato, trattando ogni casella del canvas come un'ipotesi da invalidare."
+            },
+            {
+                id: 5,
+                area: 'Prodotto',
+                icon: '🔨',
+                title: "All'inizio, fai cose che non scalano per capire cosa scalerà.",
+                expert: "Paul Graham",
+                content: "<p>I fondatori pensano subito a come gestire un milione di utenti, ignorando come ottenere i primi dieci. Cerca gli utenti uno ad uno, offri un supporto clienti manuale e follemente eccezionale. Impara meccanicamente il processo prima di automatizzarlo in codice.</p><strong>Azione pratica:</strong> Crea un'esperienza 'concierge' per i tuoi primi clienti. Fai a mano il lavoro che un domani farà l'algoritmo."
+            },
+            {
+                id: 6,
+                area: 'Prodotto',
+                icon: '❤️',
+                title: "Innamorati del problema del cliente, non della tua soluzione.",
+                expert: "Steve Blank",
+                content: "<p>Se ami la tua soluzione, sarai cieco quando il mercato ti dirà che è sbagliata. Se ami il problema, sarai flessibile nel cambiare la soluzione finché non lo risolvi nel modo migliore possibile.</p><strong>Azione pratica:</strong> Scrivi il problema su una lavagna. Quella è l'unica cosa fissa. Il codice, il prodotto, il prezzo... è tutto liquido e modificabile."
+            },
+            // Crescita & Metriche
+            {
+                id: 7,
+                area: 'Crescita',
+                icon: '🪣',
+                title: "La retention è regina. Versare acqua in un secchio bucato ti ucciderà.",
+                expert: "Brian Balfour",
+                content: "<p>L'acquisizione crea l'illusione della crescita; la retention costruisce l'azienda. Se gli utenti entrano e non restano, comprare ads o fare PR accelererà solo la tua morte bruciando cassa.</p><strong>Azione pratica:</strong> Ferma l'acquisizione a pagamento finché non hai stabilizzato la tua curva di retention (deve appiattirsi nel tempo e non andare a zero). Focus sul valore di lungo termine."
+            },
+            {
+                id: 8,
+                area: 'Crescita',
+                icon: '🔄',
+                title: "Pensa a 'Loop' di crescita, non a 'Imbuti' (Funnels).",
+                expert: "Brian Balfour",
+                content: "<p>I funnel sono lineari: metti soldi sopra, escono clienti sotto. I loop sono sistemi in cui un utente crea un output (contenuto, inviti, soldi) che genera automaticamente nuovi utenti. I loop sono sostenibili, i funnel diventano sempre più costosi.</p><strong>Azione pratica:</strong> Mappa come il tuo utente, usando il prodotto nel modo più naturale possibile, può esporre il prodotto a nuovi potenziali utenti."
+            },
+            {
+                id: 9,
+                area: 'Crescita',
+                icon: '🌡️',
+                title: "Il Product-Market Fit è un grado continuo, non un interruttore.",
+                expert: "Brian Balfour",
+                content: "<p>Non svegliarti un giorno pensando 'Ho raggiunto il PMF, ora scalo all'infinito'. Man mano che cerchi di raggiungere segmenti di mercato più ampi, il tuo PMF diminuirà. Devi riadattare continuamente Prodotto, Canale e Mercato.</p><strong>Azione pratica:</strong> Monitora metriche specifiche (es. Sean Ellis test, NRR, Engagement rate) per ogni nuovo segmento o canale che attacchi."
+            },
+            {
+                id: 10,
+                area: 'Crescita',
+                icon: '📉',
+                title: "Ignora le 'vanity metrics'. Misura solo ciò che cambia le decisioni.",
+                expert: "Andrew Chen",
+                content: "<p>Download cumulativi, pageviews e follower non pagano gli stipendi. Le vanity metrics ti fanno sentire bene ma non ti dicono se l'azienda è in salute. Usa metriche attive.</p><strong>Azione pratica:</strong> Definisci la tua North Star Metric (metrica stella polare) che cattura il valore reale percepito dal cliente (es. notti prenotate per Airbnb, messaggi inviati per Slack)."
+            },
+            {
+                id: 11,
+                area: 'Crescita',
+                icon: '🕸️',
+                title: "Costruisci Network Effect fin dal giorno zero o sarai sempre in guerra.",
+                expert: "Andrew Chen",
+                content: "<p>Il prodotto diventa migliore e più prezioso man mano che più persone lo usano. Senza effetti di rete, la tua unica difesa contro i competitor sono le feature e il prezzo, una corsa verso il basso.</p><strong>Azione pratica:</strong> Chiediti: l'ingresso dell'utente N+1 rende l'esperienza dell'utente 1 migliore? Se no, come puoi integrare dinamiche social o marketplace?"
+            },
+            {
+                id: 12,
+                area: 'Crescita',
+                icon: '🧩',
+                title: "Il Canale domina: costruisci il prodotto per il canale, non viceversa.",
+                expert: "Brian Balfour (Product-Channel Fit)",
+                content: "<p>Non puoi costruire un prodotto e poi 'trovare' il canale di marketing. Canali diversi richiedono prodotti diversi (es. un prodotto virale non ha bisogno di SEO, un prodotto B2B complesso non scalerà su TikTok). Prodotti e canali si modellano a vicenda.</p><strong>Azione pratica:</strong> Identifica i tuoi 2 canali di acquisizione principali e adatta l'onboarding e le feature affinché performino perfettamente su quelle piattaforme."
+            },
+            // Esecuzione
+            {
+                id: 13,
+                area: 'Esecuzione',
+                icon: 'T',
+                title: "Sii un founder 'T-shaped': domina una singola abilità che muove l'ago.",
+                expert: "Andrew Chen / YC",
+                content: "<p>Devi sapere un po' di tutto (legale, design, vendite), ma devi avere un'area in cui sei nei top 10% al mondo, che sia la scrittura del codice o l'acquisizione clienti. La profondità in quell'area è il tuo vantaggio sleale inziale.</p><strong>Azione pratica:</strong> Identifica qual è la leva principale per il tuo specifico modello di business. Delega il resto, domina in modo maniacale quella leva."
+            },
+            {
+                id: 14,
+                area: 'Esecuzione',
+                icon: '👻',
+                title: "Il tuo nemico non è la concorrenza, è l'oscurità e l'indifferenza.",
+                expert: "Steve Blank",
+                content: "<p>All'inizio le startup sono ossessionate da Google o Microsoft che le copiano. In realtà, il vero rischio è che al mercato semplicemente non importi nulla di te. Nessuno si sveglia pensando alla tua startup.</p><strong>Azione pratica:</strong> Smetti di guardare i competitor. Concentrati ossessivamente su come farti notare e ricordare dal tuo cliente potenziale. Crea frizione positiva, posizionati in modo polarizzante."
+            },
+            {
+                id: 15,
+                area: 'Esecuzione',
+                icon: '⚡',
+                title: "Velocità di iterazione > Qualità della prima idea.",
+                expert: "Paul Graham",
+                content: "<p>Chi impara più in fretta vince. Una startup non è altro che un'organizzazione progettata per cercare rapidamente risposte nel caos. Se la tua pipeline di rilascio o il tuo decision-making è lento, sei già morto.</p><strong>Azione pratica:</strong> Riduci il ciclo 'Idea -> Costruzione -> Lancio -> Misurazione' a giorni, non mesi. Fai micro-esperimenti settimanali."
+            },
+            {
+                id: 16,
+                area: 'Esecuzione',
+                icon: '⛽',
+                title: "Non cercare soldi per capire cosa fare. Cercali per accelerare.",
+                expert: "Tutti (Saggezza VC Generale)",
+                content: "<p>Il Venture Capital è benzina per un fuoco che sta già bruciando. Se usi i soldi dei VC per cercare il fiammifero (trovare il PMF o capire il modello di business), finirai per bruciarti. Raccogli fondi quando hai un sistema prevedibile da scalare.</p><strong>Azione pratica:</strong> Finché il costo per acquisire un cliente (CAC) non è prevedibilmente inferiore al suo valore nel tempo (LTV), mantieni il team piccolo e spilorcio."
+            },
+            {
+                id: 17,
+                area: 'Esecuzione',
+                icon: '🧭',
+                title: "Un pivot non è fallimento, è correzione di rotta basata sui fatti.",
+                expert: "Steve Blank",
+                content: "<p>L'ego è ciò che uccide le aziende quando i dati indicano di cambiare. Un pivot (cambio di prodotto, mercato o canale) è il risultato naturale di un apprendimento validato. Innamorarsi della visione ma essere flessibili sui dettagli.</p><strong>Azione pratica:</strong> Se i dati e le interviste indicano un blocco strutturale dopo mesi di test su una direzione, cambia direzione tempestivamente senza rimorsi psicologici."
+            }
+        ];
+
+        // --- APP STATE ---
+        let currentFilter = 'Tutti';
+        let focusChartInstance = null;
+
+        // --- CORE FUNCTIONS ---
+
+        function initApp() {
+            renderFilters();
+            renderTips();
+            initChart();
+
+            // Close modal on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeModal();
+            });
+        }
+
+        // Render Filter Buttons
+        function renderFilters() {
+            const container = document.getElementById('filter-container');
+            const categories = ['Tutti', 'Prodotto', 'Crescita', 'Esecuzione'];
+
+            container.innerHTML = categories.map(cat => `
+                <button
+                    onclick="setFilter('${cat}')"
+                    class="filter-btn px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 border-2
+                    ${currentFilter === cat ? 'bg-stone-800 text-white border-stone-800 shadow-md' : 'bg-white text-stone-600 border-stone-200 hover:border-stone-400'}">
+                    ${cat}
+                </button>
+            `).join('');
+        }
+
+        // Handle Filter Click
+        function setFilter(category) {
+            currentFilter = category;
+            renderFilters(); // Update active states
+            renderTips(); // Re-render grid
+        }
+
+        // Render the 17 Tips
+        function renderTips() {
+            const container = document.getElementById('tips-container');
+            const filteredData = currentFilter === 'Tutti'
+                ? tipsData
+                : tipsData.filter(t => t.area === currentFilter);
+
+            container.innerHTML = '';
+
+            if(filteredData.length === 0) return;
+
+            filteredData.forEach(tip => {
+                const card = document.createElement('div');
+                card.className = 'tip-card bg-white rounded-xl p-6 border border-stone-200 flex flex-col h-full cursor-pointer relative overflow-hidden group';
+                card.onclick = () => openModal(tip.id);
+
+                // Color coding based on area
+                let badgeColor = '';
+                if(tip.area === 'Prodotto') badgeColor = 'text-blue-700 bg-blue-50 border-blue-200';
+                if(tip.area === 'Crescita') badgeColor = 'text-green-700 bg-green-50 border-green-200';
+                if(tip.area === 'Esecuzione') badgeColor = 'text-purple-700 bg-purple-50 border-purple-200';
+
+                card.innerHTML = `
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-3xl">${tip.icon}</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded border ${badgeColor}">
+                            ${tip.area}
+                        </span>
+                    </div>
+                    <h3 class="text-lg font-bold text-stone-900 leading-tight mb-2 group-hover:text-brand-accent transition-colors">
+                        ${tip.title}
+                    </h3>
+                    <div class="mt-auto pt-4 flex items-center justify-between border-t border-stone-100">
+                        <span class="text-xs text-stone-500 font-medium line-clamp-1">Via: ${tip.expert}</span>
+                        <span class="text-brand-accent opacity-0 group-hover:opacity-100 transition-opacity">
+                            &rarr;
+                        </span>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Modal Logic
+        function openModal(id) {
+            const tip = tipsData.find(t => t.id === id);
+            if(!tip) return;
+
+            document.getElementById('modal-title').innerText = tip.title;
+            document.getElementById('modal-category').innerText = `Area: ${tip.area}`;
+            document.getElementById('modal-expert').innerText = tip.expert;
+            document.getElementById('modal-content').innerHTML = tip.content;
+
+            const modal = document.getElementById('modal');
+            const overlay = document.getElementById('modal-overlay');
+            const panel = document.getElementById('modal-panel');
+
+            modal.classList.remove('hidden');
+
+            // Trigger reflow
+            void modal.offsetWidth;
+
+            overlay.classList.remove('opacity-0');
+            panel.classList.remove('opacity-0', 'scale-95');
+            panel.classList.add('opacity-100', 'scale-100');
+
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            const overlay = document.getElementById('modal-overlay');
+            const panel = document.getElementById('modal-panel');
+
+            overlay.classList.add('opacity-0');
+            panel.classList.remove('opacity-100', 'scale-100');
+            panel.classList.add('opacity-0', 'scale-95');
+
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }, 300); // Wait for transition
+        }
+
+        // --- CHART LOGIC ---
+
+        const chartDataMap = {
+            'idea':  [90, 20, 60], // High Product, Low Growth, Med Execution
+            'mvp':   [80, 40, 80],
+            'pmf':   [60, 80, 90],
+            'scale': [40, 100, 90] // Lower relative Product focus, High Growth/Exec
+        };
+
+        function initChart() {
+            const ctx = document.getElementById('focusChart').getContext('2d');
+
+            // Global Chart.js defaults for aesthetics
+            Chart.defaults.font.family = 'Inter, sans-serif';
+            Chart.defaults.color = '#78716c';
+
+            focusChartInstance = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['Prodotto (Scoperta/Soluzione)', 'Crescita (Acquisizione/Scale)', 'Esecuzione (Velocità/Operazioni)'],
+                    datasets: [{
+                        label: 'Livello di Focus Richiesto',
+                        data: chartDataMap['idea'],
+                        backgroundColor: 'rgba(217, 119, 6, 0.2)', // brand-accent with opacity
+                        borderColor: 'rgba(217, 119, 6, 1)',
+                        pointBackgroundColor: 'rgba(217, 119, 6, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(217, 119, 6, 1)',
+                        borderWidth: 2,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: '#e7e5e4' },
+                            grid: { color: '#e7e5e4' },
+                            pointLabels: {
+                                font: { size: 12, weight: '600' },
+                                color: '#292524'
+                            },
+                            ticks: {
+                                display: false, // Hide numeric scale
+                                min: 0,
+                                max: 100
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#1c1917',
+                            padding: 12,
+                            titleFont: { size: 14, family: 'Inter' },
+                            bodyFont: { size: 13, family: 'Inter' },
+                            callbacks: {
+                                label: function(context) {
+                                    return ` Intensità Focus: ${context.raw}%`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateChart(phase) {
+            // Update button styles
+            document.querySelectorAll('.phase-btn').forEach(btn => {
+                if(btn.dataset.phase === phase) {
+                    btn.classList.add('border-brand-accent', 'bg-brand-light', 'text-brand-accent');
+                    btn.classList.remove('border-stone-200', 'text-stone-600', 'hover:border-stone-300');
+                    btn.querySelector('span').classList.replace('text-stone-400', 'text-stone-500');
+                } else {
+                    btn.classList.remove('border-brand-accent', 'bg-brand-light', 'text-brand-accent');
+                    btn.classList.add('border-stone-200', 'text-stone-600', 'hover:border-stone-300');
+                    btn.querySelector('span').classList.replace('text-stone-500', 'text-stone-400');
+                }
+            });
+
+            // Update chart data
+            if(focusChartInstance) {
+                focusChartInstance.data.datasets[0].data = chartDataMap[phase];
+                focusChartInstance.update();
+            }
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', initApp);
+
+    </script>
+</body>
