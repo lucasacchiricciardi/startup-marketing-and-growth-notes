@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note Side Business Blueprint - Luca Sacchi Ricciardi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        .phase-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .phase-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .content-card {
+            transition: all 0.2s ease-out;
+        }
+        .content-card:hover {
+            border-color: #d97706;
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800 antialiased font-sans">
+
+    <header class="w-full bg-gradient-to-br from-stone-900 via-stone-800 to-stone-900 text-white py-16 px-4">
+        <div class="max-w-5xl mx-auto text-center">
+            <div class="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-amber-400 uppercase bg-amber-400/10 rounded-full border border-amber-400/20">
+                Corso Side Business Blueprint
+            </div>
+            <h1 class="text-4xl md:text-5xl font-serif font-bold mb-4 tracking-tight">Le Mie Note di Studio</h1>
+            <p class="text-lg text-stone-300 max-w-2xl mx-auto">
+                Appunti personali raccolti durante il corso di Luca Barbone mentre costruisco LogWhispererAI
+            </p>
+            <div class="mt-6 flex justify-center gap-4 text-sm">
+                <span class="text-stone-400">📍 Milano</span>
+                <span class="text-stone-500">•</span>
+                <a href="https://gitea.lab.home.lucasacchi.net/lucasacchi/LogWhispererAI" target="_blank" class="text-amber-400 hover:text-amber-300 transition-colors">
+                    🔗 Il mio progetto
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-6xl mx-auto py-12 px-4 sm:px-6 space-y-16">
+
+        <!-- Introduzione al Metodo -->
+        <section class="bg-white rounded-2xl p-8 shadow-sm border border-stone-200">
+            <h2 class="text-2xl font-serif font-bold text-stone-900 mb-4">Il Metodo in 6 Fasi</h2>
+            <p class="text-stone-600 leading-relaxed mb-6">
+                Il percorso del <strong>Side Business Blueprint</strong> è strutturato in un metodo pratico diviso in <strong>6 fasi (o step)</strong>, pensate per essere affrontate nell'arco di 6 settimane. L'obiettivo è guidare l'utente dalla concezione dell'idea fino all'acquisizione dei clienti e alla scalabilità, senza dover lasciare il proprio lavoro principale.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="bg-amber-50 rounded-lg p-4 border border-amber-200">
+                    <span class="text-amber-600 font-bold">Settimana 1</span>
+                    <p class="text-stone-700 text-sm mt-1">Identifica il miglior tipo di Side Business per te</p>
+                </div>
+                <div class="bg-amber-50 rounded-lg p-4 border border-amber-200">
+                    <span class="text-amber-600 font-bold">Settimana 2</span>
+                    <p class="text-stone-700 text-sm mt-1">Definisci la tua idea di Side Business</p>
+                </div>
+                <div class="bg-amber-50 rounded-lg p-4 border border-amber-200">
+                    <span class="text-amber-600 font-bold">Settimana 3</span>
+                    <p class="text-stone-700 text-sm mt-1">Trova la tua nicchia e crea gli asset</p>
+                </div>
+                <div class="bg-amber-50 rounded-lg p-4 border border-amber-200">
+                    <span class="text-amber-600 font-bold">Settimana 4</span>
+                    <p class="text-stone-700 text-sm mt-1">Valida l'idea e trova i primi clienti</p>
+                </div>
+                <div class="bg-amber-50 rounded-lg p-4 border border-amber-200">
+                    <span class="text-amber-600 font-bold">Settimana 5</span>
+                    <p class="text-stone-700 text-sm mt-1">Costruisci la rendita da 1.000€/mese</p>
+                </div>
+                <div class="bg-amber-50 rounded-lg p-4 border border-amber-200">
+                    <span class="text-amber-600 font-bold">Settimana 6</span>
+                    <p class="text-stone-700 text-sm mt-1">Crea il piano di crescita</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FASE 1 -->
+        <section class="phase-section">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="bg-amber-600 text-white text-2xl font-bold rounded-lg w-14 h-14 flex items-center justify-center shadow-lg">1</div>
+                <div>
+                    <h2 class="text-2xl font-serif font-bold text-stone-900">Identifica il Miglior Tipo di Side Business per Te</h2>
+                    <p class="text-stone-500 text-sm">Settimana 1</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-8 shadow-sm border border-stone-200 mb-6">
+                <h3 class="text-xl font-bold text-stone-800 mb-4">🎯 Il Concetto Chiave</h3>
+                <p class="text-stone-600 leading-relaxed">
+                    In questa fase iniziale <strong>non si parte dall'idea, ma da se stessi</strong>. L'obiettivo è fare chiarezza incrociando le proprie passioni, le competenze attuali e gli "asset" (risorse) di cui si è già in possesso, con i diversi modelli di business digitali esistenti. Questo permette di individuare la direzione più realistica, conveniente e motivante, eliminando la confusione iniziale.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="content-card bg-white rounded-xl p-6 border border-stone-200">
+                    <h4 class="font-bold text-stone-800 mb-3 flex items-center gap-2">
+                        <span class="text-2xl">🧠</span> I 3 Worksheet Fondamentali
+                    </h4>
+                    <ul class="text-stone-600 space-y-2 text-sm">
+                        <li>• <strong>Worksheet delle Passioni:</strong> Attività che ti danno energia, argomenti di cui parleresti per ore</li>
+                        <li>• <strong>Worksheet delle Competenze:</strong> Abilità quotidiane, compiti che gli altri ti chiedono</li>
+                        <li>• <strong>Worksheet degli Asset:</strong> Domini, liste email, network, progetti passati "in cantina"</li>
+                    </ul>
+                </div>
+
+                <div class="content-card bg-white rounded-xl p-6 border border-stone-200">
+                    <h4 class="font-bold text-stone-800 mb-3 flex items-center gap-2">
+                        <span class="text-2xl">📦</span> I 6 Modelli di Business
+                    </h4>
+                    <ul class="text-stone-600 space-y-2 text-sm">
+                        <li>1. <strong>Prodotti Digitali / Infoprodotti</strong> - Margini altissimi, scalabilità infinita</li>
+                        <li>2. <strong>Affiliate Marketing</strong> - Promuovi prodotti di terzi per commissioni</li>
+                        <li>3. <strong>Arbitraggio</strong> - Differenza tra costo e valore di rivendita</li>
+                        <li>4. <strong>Servizi Produttizzati</strong> - Consulenza standardizzata a pacchetto</li>
+                        <li>5. <strong>SaaS / Micro-SaaS</strong> - Software in abbonamento</li>
+                        <li>6. <strong>Membership</strong> - Abbonamenti e community esclusive</li>
+                    </ul>
+                </div>
+
+                <div class="content-card bg-white rounded-xl p-6 border border-stone-200">
+                    <h4 class="font-bold text-stone-800 mb-3 flex items-center gap-2">
+                        <span class="text-2xl">✨</span> Checklist del Side Business Ideale
+                    </h4>
+                    <ul class="text-stone-600 space-y-2 text-sm">
+                        <li>✅ Valorizza ciò che sai già fare</li>
+                        <li>✅ Riguarda qualcosa che ti appassiona</li>
+                        <li>✅ Sfrutta risorse/asset che possiedi già</li>
+                        <li>✅ Monetizza in tempi brevi</li>
+                    </ul>
+                </div>
+
+                <div class="content-card bg-white rounded-xl p-6 border border-stone-200">
+                    <h4 class="font-bold text-stone-800 mb-3 flex items-center gap-2">
+                        <span class="text-2xl">🤖</span> AI come Co-Founder
+                    </h4>
+                    <p class="text-stone-600 text-sm">
+                        Usa ChatGPT o Claude come <strong>Business Coach</strong>. Carica i tuoi 3 Worksheet e usa il prompt divergente per generare idee personalizzate. Poi usa il prompt convergente per valutare criticamente le idee generate.
+                    </p>
+                    <p class="text-amber-600 text-xs mt-2 font-semibold">
+                        ⚠️ "L'AI impara e cresce, noi no" - Non delegare mai le decisioni strategiche finali.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FASE 2 -->
+        <section class="phase-section">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="bg-amber-600 text-white text-2xl font-bold rounded-lg w-14 h-14 flex items-center justify-center shadow-lg">2</div>
+                <div>
+                    <h2 class="text-2xl font-serif font-bold text-stone-900">Definisci la Tua Idea di Side Business</h2>
+                    <p class="text-stone-500 text-sm">Settimana 2</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-8 shadow-sm border border-stone-200 mb-6">
+                <h3 class="text-xl font-bold text-stone-800 mb-4">🎯 Il Concetto Chiave</h3>
+                <p class="text-stone-600 leading-relaxed">
+                    Una volta scelta la direzione, si passa a trasformare l'idea astratta in una proposta concreta e chiara. In questo step si costruisce la <strong>Minimum Viable Offer (MVO)</strong>, definendo con esattezza cosa si vende, a chi ci si rivolge e quale problema specifico si va a risolvere, impostando anche un primo prezzo di test.
+                </p>
+            </div>
+
+            <div class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-8 border border-amber-200 mb-6">
+                <h4 class="font-bold text-stone-800 mb-4 text-lg">📝 I 5 Pilastri della MVO</h4>
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+                    <div class="bg-white rounded-lg p-4 shadow-sm">
+                        <span class="text-3xl">🎯</span>
+                        <h5 class="font-bold text-stone-800 mt-2">Il Target</h5>
+                        <p class="text-stone-600 text-xs">A chi ti rivolgi esattamente?</p>
+                    </div>
+                    <div class="bg-white rounded-lg p-4 shadow-sm">
+                        <span class="text-3xl">💡</span>
+                        <h5 class="font-bold text-stone-800 mt-2">Problema</h5>
+                        <p class="text-stone-600 text-xs">Quale problema risolvi?</p>
+                    </div>
+                    <div class="bg-white rounded-lg p-4 shadow-sm">
+                        <span class="text-3xl">🔄</span>
+                        <h5 class="font-bold text-stone-800 mt-2">Trasformazione</h5>
+                        <p class="text-stone-600 text-xs">Quale beneficio prometti?</p>
+                    </div>
+                    <div class="bg-white rounded-lg p-4 shadow-sm">
+                        <span class="text-3xl">📏</span>
+                        <h5 class="font-bold text-stone-800 mt-2">Perimetro</h5>
+                        <p class="text-stone-600 text-xs">Cosa è incluso e cosa NO?</p>
+                    </div>
+                    <div class="bg-white rounded-lg p-4 shadow-sm">
+                        <span class="text-3xl">💰</span>
+                        <h5 class="font-bold text-stone-800 mt-2">Prezzo</h5>
+                        <p class="text-stone-600 text-xs">Fissa un prezzo di test</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="content-card bg-white rounded-xl p-6 border border-stone-200">
+                    <h4 class="font-bold text-stone-800 mb-3">🏗️ Esecuzione a Costo Zero</h4>
+                    <ul class="text-stone-600 space-y-2 text-sm">
+                        <li>❌ Non comprare domini</li>
+                        <li>❌ Non creare funnel complicati</li>
+                        <li>❌ Non investire in campagne sponsorizzate</li>
+                        <li>✅ Usa <strong>Notion</strong> per una pagina vetrina gratuita</li>
+                        <li>✅ Scrivi 10 bullet point su un foglio di carta</li>
+                    </ul>
+                </div>
+
+                <div class="content-card bg-white rounded-xl p-6 border border-stone-200">
+                    <h4 class="font-bold text-stone-800 mb-3">📊 Vantaggi MVO vs Prodotto Finito</h4>
+                    <ul class="text-stone-600 space-y-2 text-sm">
+                        <li>✅ Validazione prima della creazione</li>
+                        <li>✅ Risparmio drastico di tempo</li>
+                        <li>✅ Chiarezza immediata</li>
+                        <li>✅ Zero costi e complessità tecnica</li>
+                        <li>✅ Ti protegge dall'innamorarti dell'idea</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- FASE 3 -->
+        <section class="phase-section">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="bg-amber-600 text-white text-2xl font-bold rounded-lg w-14 h-14 flex items-center justify-center shadow-lg">3</div>
+                <div>
+                    <h2 class="text-2xl font-serif font-bold text-stone-900">Trova la Tua Nicchia e gli Early Adopter</h2>
+                    <p class="text-stone-500 text-sm">Settimana 3</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-8 shadow-sm border border-stone-200 mb-6">
+                <h3 class="text-xl font-bold text-stone-800 mb-4">🎯 Il Concetto Chiave</h3>
+                <p class="text-stone-600 leading-relaxed">
+                    Qui si individua il segmento di pubblico più ricettivo (la nicchia) e si capisce dove "vive" online per poterlo intercettare. Inoltre, si creano i materiali e gli asset minimi necessari (come una landing page, un form o dei messaggi) per poter presentare l'offerta al mondo esterno in modo professionale.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="content-card bg-white rounded-xl p-6 border border-stone-200">
+                    <h4 class="font-bold text-stone-800 mb-3">🔍 Mappare la Nicchia</h4>
+                    <p class="text-stone-600 text-sm mb-3">
+                        Devi rispondere a 3 domande:
+                    </p>
+                    <ol class="text-stone-600 space-y-2 text-sm list-decimal list-inside">
+                        <li>Chi è l'Early Adopter?</li>
+                        <li>Quali luoghi online frequenta?</li>
+                        <li>Qual è il "ponte" per raggiungerlo?</li>
+                    </ol>
+                </div>
+
+                <div class="content-card bg-white rounded-xl p-6 border border-stone-200">
+                    <h4 class="font-bold text-stone-800 mb-3">📍 Dove Trovare Early Adopter</h4>
+                    <ul class="text-stone-600 space-y-2 text-sm">
+                        <li>• Podcast che ascolta</li>
+                        <li>• Blog che legge</li>
+                        <li>• Influencer che segue</li>
+                        <li>• Gruppi LinkedIn/Facebook/Telegram</li>
+                        <li>• Subreddit di settore</li>
+                        <li>• Concorrenti che già usa</li>
+                    </ul>
+                </div>
+
+                <div class="content-card bg-white rounded-xl p-6 border border-stone-200">
+                    <h4 class="font-bold text-stone-800 mb-3">🎨 Il Posizionamento</h4>
+                    <p class="text-stone-600 text-sm mb-2">
+                        <strong>La metafora del "Pesce Rosso":</strong>
+                    </p>
+                    <p class="text-stone-600 text-sm">
+                        Devi puntare a diventare <strong>"l'unico pesce rosso in mezzo allo stagno con pesci bianchi"</strong>. L'attenzione del cliente verrà catturata dalla tua unicità.
+                    </p>
+                    <p class="text-amber-600 text-xs mt-2 font-semibold">
+                        💡 Più il differenziante è forte, meno marketing dovrai fare.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FASE 4 -->
+        <section class="phase-section">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="bg-amber-600 text-white text-2xl font-bold rounded-lg w-14 h-14 flex items-center justify-center shadow-lg">4</div>
+                <div>
+                    <h2 class="text-2xl font-serif font-bold text-stone-900">Valida l'Idea e Trova i Primi 5-10 Clienti</h2>
+                    <p class="text-stone-500 text-sm">Settimana 4</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-8 shadow-sm border border-stone-200 mb-6">
+                <h3 class="text-xl font-bold text-stone-800 mb-4">🎯 Il Concetto Chiave</h3>
+                <p class="text-stone-600 leading-relaxed">
+                    È la fase del <strong>"test sul campo"</strong>. Invece di chiudersi a costruire il prodotto finale, si va sul mercato per proporre l'offerta creata e raccogliere i primi riscontri oggettivi (click, feedback o, idealmente, le prime prevendite o vendite). Questo passaggio serve a dimostrare che c'è davvero domanda prima di investire ulteriore tempo e risorse.
+                </p>
+            </div>
+
+            <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8 border border-green-200 mb-6">
+                <h4 class="font-bold text-stone-800 mb-4 text-lg">🔥 Il Caso Davide: Da 0 a 500€ in 20 Giorni</h4>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div class="bg-white rounded-lg p-4 text-center">
+                        <span class="text-4xl">📄</span>
+                        <p class="text-stone-600 text-xs mt-2">1. Ha creato la MVO su Notion</p>
+                    </div>
+                    <div class="bg-white rounded-lg p-4 text-center">
+                        <span class="text-4xl">👥</span>
+                        <p class="text-stone-600 text-xs mt-2">2. Ha contattato 20 persone su LinkedIn</p>
+                    </div>
+                    <div class="bg-white rounded-lg p-4 text-center">
+                        <span class="text-4xl">🎯</span>
+                        <p class="text-stone-600 text-xs mt-2">3. Ha fatto call esplorative</p>
+                    </div>
+                    <div class="bg-white rounded-lg p-4 text-center">
+                        <span class="text-4xl">💰</span>
+                        <p class="text-stone-600 text-xs mt-2">4. Ha chiuso 500€ in 20 giorni</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="content-card bg-white rounded-xl p-6 border border-stone-200">
+                    <h4 class="font-bold text-stone-800 mb-3">❓ Le 3 Domande per Identificare i Red Hotter</h4>
+                    <ol class="text-stone-600 space-y-3 text-sm list-decimal list-inside">
+                        <li><strong>"Ti capita mai questa situazione?"</strong> - Verifica se affrontano il problema</li>
+                        <li><strong>"Quanto spesso ti capita?"</strong> - Quantifica la frequenza del dolore</li>
+                        <li><strong>"Come l'hai risolta l'ultima volta?"</strong> - Scopri le soluzioni attuali</li>
+                    </ol>
+                    <p class="text-green-600 text-sm mt-3 font-semibold">
+                        ✅ Il segnale vincente: se il cliente "sbrocca" e si lamenta del problema
+                    </p>
+                </div>
+
+                <div class="content-card bg-white rounded-xl p-6 border border-stone-200">
+                    <h4 class="font-bold text-stone-800 mb-3">📋 Strategie OPN (Other People's Network)</h4>
+                    <p class="text-stone-600 text-sm mb-3">
+                        34 strategie a budget zero per acquisire clienti:
+                    </p>
+                    <ul class="text-stone-600 space-y-1 text-sm">
+                        <li>• Comment Marketing - Commenta 10 post al giorno su LinkedIn</li>
+                        <li>• Community Posting - Partecipa attivamente in gruppi target</li>
+                        <li>• Guest Posting - Pubblica su blog di terzi</li>
+                        <li>• Interviste come Lead Gen - Offri visibilità gratuita</li>
+                        <li>• Catena 1to1 Referral - Chiedi referenze alla fine di ogni call</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- FASE 5 -->
+        <section class="phase-section">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="bg-amber-600 text-white text-2xl font-bold rounded-lg w-14 h-14 flex items-center justify-center shadow-lg">5</div>
+                <div>
+                    <h2 class="text-2xl font-serif font-bold text-stone-900">Costruisci la Tua Rendita da 1.000€/mese</h2>
+                    <p class="text-stone-500 text-sm">Settimana 5</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-8 shadow-sm border border-stone-200 mb-6">
+                <h3 class="text-xl font-bold text-stone-800 mb-4">🎯 Il Concetto Chiave</h3>
+                <p class="text-stone-600 leading-relaxed">
+                    A partire dai dati e dai numeri raccolti durante la validazione, si fanno delle proiezioni per capire quanto si è vicini o lontani dall'obiettivo economico. In questa fase si imposta il sistema di monetizzazione definitivo: si stabiliscono le routine settimanali, i flussi per acquisire clienti in modo continuativo e il pricing corretto affinché il side business sia sostenibile.
+                </p>
+            </div>
+
+            <div class="bg-gradient-to-br from-purple-50 to-violet-50 rounded-2xl p-8 border border-purple-200 mb-6">
+                <h4 class="font-bold text-stone-800 mb-4 text-lg">📊 Scomponi l'Obiettivo: 1.000€/mese</h4>
+                <p class="text-stone-600 text-sm mb-4">
+                    Usa il <strong>Framework di Brian Balfour</strong> per decidere dove posizionarti:
+                </p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-white rounded-lg p-4 text-center">
+                        <span class="text-2xl">1</span>
+                        <p class="font-bold text-stone-800">1 cliente</p>
+                        <p class="text-stone-600 text-sm">× 1.000€</p>
+                    </div>
+                    <div class="bg-white rounded-lg p-4 text-center">
+                        <span class="text-2xl">2</span>
+                        <p class="font-bold text-stone-800">2 clienti</p>
+                        <p class="text-stone-600 text-sm">× 500€</p>
+                    </div>
+                    <div class="bg-white rounded-lg p-4 text-center">
+                        <span class="text-2xl">10</span>
+                        <p class="font-bold text-stone-800">10 clienti</p>
+                        <p class="text-stone-600 text-sm">× 100€</p>
+                    </div>
+                    <div class="bg-white rounded-lg p-4 text-center">
+                        <span class="text-2xl">100</span>
+                        <p class="font-bold text-stone-800">100 clienti</p>
+                        <p class="text-stone-600 text-sm">× 10€</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="content-card bg-white rounded-xl p-6 border border-stone-200">
+                    <h4 class="font-bold text-stone-800 mb-3">⚖️ Prezzo Basso vs Prezzo Alto</h4>
+                    <div class="space-y-3">
+                        <div class="bg-red-50 rounded-lg p-3 border border-red-200">
+                            <p class="font-semibold text-red-800 text-sm">❌ Prezzo Basso (5-10€)</p>
+                            <p class="text-stone-600 text-xs">Servono 100-200 clienti/mese. Richiede capacità di distribuzione massiccia. Ti mangia tutto il tempo.</p>
+                        </div>
+                        <div class="bg-green-50 rounded-lg p-3 border border-green-200">
+                            <p class="font-semibold text-green-800 text-sm">✅ Prezzo Alto (500-1.000€)</p>
+                            <p class="text-stone-600 text-xs">Servono 1-2 clienti/mese. Richiede posizionamento forte. Protegge il tuo tempo.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-card bg-white rounded-xl p-6 border border-stone-200">
+                    <h4 class="font-bold text-stone-800 mb-3">💡 Monetizzare i "NO"</h4>
+                    <p class="text-stone-600 text-sm mb-2">
+                        Quando un cliente chiede un servizio da 6.000€ ma non ha budget:
+                    </p>
+                    <p class="text-stone-600 text-sm">
+                        <strong>Proponi un downsell a 800€</strong> - Un corso o pacchetto standardizzato con le stesse logiche base. Trasformi un rifiuto in una vendita.
+                    </p>
+                    <p class="text-amber-600 text-xs mt-2 font-semibold">
+                        💡 La stessa competenza può essere venduta a prezzi diversi.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FASE 6 -->
+        <section class="phase-section">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="bg-amber-600 text-white text-2xl font-bold rounded-lg w-14 h-14 flex items-center justify-center shadow-lg">6</div>
+                <div>
+                    <h2 class="text-2xl font-serif font-bold text-stone-900">Crea il Tuo Piano di Crescita</h2>
+                    <p class="text-stone-500 text-sm">Settimana 6</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-8 shadow-sm border border-stone-200 mb-6">
+                <h3 class="text-xl font-bold text-stone-800 mb-4">🎯 Il Concetto Chiave</h3>
+                <p class="text-stone-600 leading-relaxed">
+                    L'ultimo step è dedicato a ciò che succede dopo il lancio. L'obiettivo è <strong>ingegnerizzare il progetto affinché possa crescere senza trasformarsi in un opprimente secondo lavoro a tempo pieno</strong>. Si impara quindi a delegare (ad esempio sfruttando Assistenti Virtuali), ad automatizzare le attività ripetitive e a definire i prossimi passi per liberare il proprio tempo mantenendo le entrate stabili.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                <div class="content-card bg-white rounded-xl p-6 border border-stone-200">
+                    <h4 class="font-bold text-stone-800 mb-3">👥 Delegazione ai VA</h4>
+                    <p class="text-stone-600 text-sm mb-3">
+                        <strong>Delegare è una skill.</strong> Se il VA non performa, nel 90% dei casi è colpa tua.
+                    </p>
+                    <ul class="text-stone-600 space-y-1 text-sm">
+                        <li>✅ Amministrazione e contabilità</li>
+                        <li>✅ Data entry e ricerca</li>
+                        <li>✅ Social media management</li>
+                        <li>✅ Logistica organizzativa</li>
+                        <li>❌ Mai: scelte strategiche</li>
+                    </ul>
+                </div>
+
+                <div class="content-card bg-white rounded-xl p-6 border border-stone-200">
+                    <h4 class="font-bold text-stone-800 mb-3">⏱️ Protocollo ONA</h4>
+                    <p class="text-stone-600 text-sm mb-2">
+                        <strong>One Next Action:</strong> Scomponi ogni progetto grande in micro-task estremamente specifici.
+                    </p>
+                    <p class="text-stone-600 text-sm mb-2">
+                        Esempio: "Lancia il Side Business" →
+                    </p>
+                    <ol class="text-stone-600 text-xs list-decimal list-inside">
+                        <li>Crea Prototipo</li>
+                        <li>Crea Piano di Lancio</li>
+                        <li>Lancia</li>
+                    </ol>
+                </div>
+
+                <div class="content-card bg-white rounded-xl p-6 border border-stone-200">
+                    <h4 class="font-bold text-stone-800 mb-3">🧘 Time-Boxing</h4>
+                    <p class="text-stone-600 text-sm mb-2">
+                        Sprint di <strong>15-20 minuti</strong> di concentrazione totale, seguiti da pause di 10 minuti.
+                    </p>
+                    <ul class="text-stone-600 space-y-1 text-sm">
+                        <li><strong>Focus:</strong> Task da 50.000€/ora</li>
+                        <li><strong>Buffer:</strong> Task accumulati a basso valore</li>
+                        <li><strong>Break:</strong> Ricarica, niente lavoro</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-8 border border-blue-200">
+                <h4 class="font-bold text-stone-800 mb-4 text-lg">🔄 Dall'Infoprodotto all'Abbonamento</h4>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+                    <div class="bg-white rounded-lg px-6 py-4 shadow-sm text-center">
+                        <span class="text-2xl">📚</span>
+                        <p class="font-bold text-stone-800 mt-1">1. Infoprodotto</p>
+                        <p class="text-stone-500 text-xs">Semplice, veloce da testare</p>
+                    </div>
+                    <span class="text-2xl text-stone-400">→</span>
+                    <div class="bg-white rounded-lg px-6 py-4 shadow-sm text-center">
+                        <span class="text-2xl">📧</span>
+                        <p class="font-bold text-stone-800 mt-1">2. Lista d'Attesa</p>
+                        <p class="text-stone-500 text-xs">CTA nel prodotto + sconto esclusivo</p>
+                    </div>
+                    <span class="text-2xl text-stone-400">→</span>
+                    <div class="bg-white rounded-lg px-6 py-4 shadow-sm text-center">
+                        <span class="text-2xl">👥</span>
+                        <p class="font-bold text-stone-800 mt-1">3. Community</p>
+                        <p class="text-stone-500 text-xs">Bacino già caldo e qualificato</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Concetti Fondamentali -->
+        <section class="bg-stone-900 text-white rounded-2xl p-8">
+            <h2 class="text-2xl font-serif font-bold mb-6">🧠 Concetti Fondamentali da Ricordare</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <h4 class="font-bold text-amber-400 mb-2">"Cose che non Scalano"</h4>
+                    <p class="text-stone-300 text-sm">
+                        All'inizio, i clienti vanno cercati uno ad uno manualmente. Non cercare la scalabilità, cerca la validazione.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-amber-400 mb-2">"La Sartoria Deve Morire"</h4>
+                    <p class="text-stone-300 text-sm">
+                        Nella consulenza produttizzata, non adattarti al cliente. Valuta se "fa match" con il tuo pacchetto predefinito.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-amber-400 mb-2">"Match o Ciao"</h4>
+                    <p class="text-stone-300 text-sm">
+                        Se il cliente non matcha con il tuo pacchetto, non adattare l'offerta. Salutalo e vai avanti.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-amber-400 mb-2">"ROI Positivo Sempre"</h4>
+                    <p class="text-stone-300 text-sm">
+                        Anche se il business fallisce economicamente, avrai: caso studio, competenze, contatti, visibilità.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Errori da Evitare -->
+        <section class="bg-red-50 rounded-2xl p-8 border border-red-200">
+            <h2 class="text-2xl font-serif font-bold text-stone-900 mb-6">⚠️ L'Errore che Fa Fallire il 90% dei Side Business</h2>
+            <p class="text-stone-600 mb-4">
+                Non è la mancanza di idee geniali o di investimenti. Il vero problema è la <strong>mancanza di un metodo chiaro e step-by-step</strong>.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-white rounded-lg p-4 border border-red-200">
+                    <h4 class="font-bold text-red-700">1. Paralisi Decisionale</h4>
+                    <p class="text-stone-600 text-sm">"Tutto sembra possibile" → non si fa nulla</p>
+                </div>
+                <div class="bg-white rounded-lg p-4 border border-red-200">
+                    <h4 class="font-bold text-red-700">2. Abbandono al Primo Ostacolo</h4>
+                    <p class="text-stone-600 text-sm">I problemi arrivano → il progetto si parcheggia nel garage</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-stone-900 text-stone-400 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-5xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <div class="text-left md:text-right">
+                    <p class="text-sm font-semibold text-stone-300 mb-2">LucaSacchiNet</p>
+                    <p class="text-xs text-stone-500 mb-1">Office: Viale Bligny 13/a Milano</p>
+                    <p class="text-xs text-stone-500 mb-1">Cell: +39 3939242165</p>
+                    <p class="text-xs text-stone-500 mb-1">Email: info@lucasacchi.net</p>
+                    <p class="text-xs text-stone-500">P.IVA IT09731490968</p>
+                </div>
+            </div>
+            <div class="border-t border-stone-800 pt-6 text-center">
+                <p class="text-xs text-stone-500">
+                    Note raccolte durante il corso <strong>Side Business Blueprint</strong> di Luca Barbone • 
+                    Progetto: <a href="https://gitea.lab.home.lucasacchi.net/lucasacchi/LogWhispererAI" class="text-brand-accent hover:text-brand-accent/80">LogWhispererAI</a>
+                </p>
+                <p class="text-xs text-stone-500 mt-2">
+                    Licenza: <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener noreferrer" class="text-brand-accent hover:text-brand-accent/80">CC BY-NC-SA 4.0</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
