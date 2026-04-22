@@ -5,11 +5,12 @@ Raccolta di appunti pratici su startup, marketing e growth: strategie, framework
 ## Contenuto
 
 - Indice principale dei documenti: [index.html](index.html)
-- Documento appunti: [docs/index.html](docs/index.html)
+- Appunti startup e growth: [docs/startup-notes.html](docs/startup-notes.html)
+- Appunti generali: [docs/notes.html](docs/notes.html)
 
 ## Link
 
-- Sito Appunti : [sito](https://lucasacchiricciardi.github.io/startup-marketing-and-growth-notes/)
+- Sito Appunti : [sito](https://lucasacchiricciardi.github.io/startup-marketing-and-growth-notes)
 
 ## Obiettivo
 
